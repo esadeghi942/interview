@@ -26,10 +26,9 @@
                     {{ $header }}
                 </div>
             </header>
-
             <!-- Page Content -->
-            <main>
-                {{ $slot }}
+            <main class="bg-white shadow">
+               @yield('content')
             </main>
         </div>
     </body>
