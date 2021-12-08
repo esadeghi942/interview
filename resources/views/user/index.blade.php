@@ -10,7 +10,7 @@
                         <!-- small box -->
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>{{$sumworktime}}</h3>
+                                <h3>{{$user->totalWeeklyTime}}</h3>
                                 <p>مجموع ساعات کاری هفته جاری</p>
                             </div>
                             <div class="icon">
@@ -23,8 +23,21 @@
                         <!-- small box -->
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3><sup style="font-size: 20px">ساعت</sup></h3>
+                                <h3>{{$user->restWeeklyTime}}</h3>
                                 <p>ساعت کاری باقی مانده</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-stats-bars"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-warning">
+                            <div class="inner">
+                                <h3>{{$user->time_weekly_working}}</h3>
+                                <p> ساعت کاری مورد انتظار</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-stats-bars"></i>

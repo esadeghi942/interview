@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
+use App\Helper\Helper;
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -45,4 +49,42 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function scopeUsers($query)
+    {
+        return $query->where('is_admin', 0);
+    }
+
+    public function worktimes()
+    {
+        return $this->hasMany(Worktime::class);
+    }
+
+    public function getTotalWeeklyTimeAttribute()
+    {
+        $worktimes=$this->worktimes()->thisweek()->get();
+        $sumworktime = strtotime("00:00:00");
+        foreach ($worktimes as $wt) {
+            $time2 = strtotime($wt->total);
+            $sumworktime += $time2;
+        }
+        return (new Carbon($sumworktime))->format('H:i');
+    }
+
+    public function getRestWeeklyTimeAttribute()
+    {
+        $execpted=$this->time_weekly_working;
+        $sumworktime=self::getTotalWeeklyTimeAttribute();
+        $rest=Helper::timeSubtaction($execpted,$sumworktime);
+        return $rest;
+    }
+
+    public function totaltime($worktimes){
+        $sumworktime = strtotime("00:00:00");
+        foreach ($worktimes as $wt) {
+            $time2 = strtotime($wt->total);
+            $sumworktime += $time2;
+        }
+        return (new Carbon($sumworktime))->format('H:i');
+    }
 }

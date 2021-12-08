@@ -11,8 +11,7 @@
                         <!-- small box -->
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>{{$count-1}}</h3>
-
+                                <h3>{{$count}}</h3>
                                 <p>تعداد کل کارمندان</p>
                             </div>
                             <div class="icon">

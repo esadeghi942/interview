@@ -3,8 +3,8 @@
     <!-- Control sidebar content goes here -->
 </aside>
 <!-- /.control-sidebar -->
-
-<script>
+@yield('script')
+{{--<script>
     $(function () {
         if($('.normal-example').length>0) {
             $('.normal-example').persianDatepicker({
@@ -21,4 +21,4 @@
             });
         }
     });
-</script>
+</script>--}}

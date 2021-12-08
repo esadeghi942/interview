@@ -35,15 +35,15 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{route('user.worktime.create')}}" class="nav-link">
+                                <a href="{{route('user.worktimes.create')}}" class="nav-link">
                                     <i class="nav-icon fa fa-circle-o"></i>
                                     <p>ثبت ساعت کاری</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('user.worktime.index')}}" class="nav-link">
+                                <a href="{{route('user.worktimes.index')}}" class="nav-link">
                                     <i class="nav-icon fa fa-circle-o"></i>
-                                    <p>لیست ساعات کاری</p>
+                                    <p>ساعات کاری هفته جاری</p>
                                 </a>
                             </li>
                         </ul>

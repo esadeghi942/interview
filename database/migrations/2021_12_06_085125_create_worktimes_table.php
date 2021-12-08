@@ -16,7 +16,7 @@ class CreateWorktimesTable extends Migration
         Schema::create('worktimes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->index();
-            $table->string('date');
+            $table->string('week_year');
             $table->time('time_start');
             $table->time('time_finish');
             $table->float('total');

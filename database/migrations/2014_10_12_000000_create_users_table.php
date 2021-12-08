@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->tinyInteger('is_admin')->default(0);
             $table->string('phone',11);
-            $table->integer('time_weekly_working');
+            $table->string('time_weekly_working');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
