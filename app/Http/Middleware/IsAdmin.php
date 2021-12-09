@@ -17,8 +17,6 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::check())
-            return redirect()->route('login');
         if(Auth::user()->is_admin)
             return $next($request);
         return redirect()->route('index')->with('danger','Access Denaid');

@@ -19,7 +19,7 @@ class CreateWorktimesTable extends Migration
             $table->string('week_year');
             $table->time('time_start');
             $table->time('time_finish');
-            $table->float('total');
+            $table->string('total');
             $table->text('project');
             $table->timestamps();
         });

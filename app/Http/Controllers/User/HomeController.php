@@ -16,6 +16,4 @@ class HomeController extends Controller
             return view('user.index',compact('user'));
         }
     }
-
-
 }

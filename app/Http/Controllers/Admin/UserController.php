@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('is_admin');
+    }
+
     public function index()
     {
         $users=User::users()->get();
@@ -36,12 +41,9 @@ class UserController extends Controller
     public function destroy($user_id)
     {
         if ($user_id && ctype_digit($user_id)) {
-            $userItem = User::find($user_id);
-            if ($userItem && $userItem instanceof User && $userItem->user_id != Auth::id()) {
-                $userItem->delete();
-                return response('success');
-            }
-            return response('error');
+            $userItem = User::findOrFail($user_id);
+            $userItem->delete();
+            return response('success');
         }
     }
 }

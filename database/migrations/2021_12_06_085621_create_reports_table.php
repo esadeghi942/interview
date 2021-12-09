@@ -16,7 +16,7 @@ class CreateReportsTable extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->index();
-            $table->float('total');
+            $table->string('total');
             $table->integer('exepted');
             $table->string('week');
             $table->timestamps();

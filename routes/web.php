@@ -31,7 +31,7 @@ Route::group(['middleware'=>'auth'],function () {
     Route::delete('/worktime/delete/{worktime_id}',[WorktimeController::class,'destroy'])->name('user.worktimes.destroy');
 });
 
-Route::group(['middleware'=>'is_admin'],function () {
+Route::group(['middleware'=> 'auth','is_admin'],function () {
     Route::get('admin',[AdminController::class,'index'])->name('admin');
     Route::get('/user',[UserController::class,'index'])->name('admin.user.index');
     Route::get('/user/create',[UserController::class,'create'])->name('admin.user.create');

@@ -36,14 +36,12 @@ class WorktimeController extends Controller
 
     }
 
-    public function destroy($worktime_id){
+    public function destroy($worktime_id)
+    {
         if ($worktime_id && ctype_digit($worktime_id)) {
-            $worktimeItem=Worktime::find($worktime_id);
-            if ($worktimeItem && $worktimeItem instanceof Worktime && $worktimeItem->user_id == Auth::id()) {
-                $worktimeItem->delete();
-                return response('success');
-            }
-            return response('error');
+            $worktimeItem = Auth::user()->worktimes()->findOrFail($worktime_id);
+            $worktimeItem->delete();
+            return response('success');
         }
     }
 }
