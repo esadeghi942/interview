@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use phpDocumentor\Reflection\Types\Self_;
 
 class LoginRequest extends FormRequest
 {
@@ -41,11 +42,21 @@ class LoginRequest extends FormRequest
      *
      * @throws \Illuminate\Validation\ValidationException
      */
+    public function credition()
+    {
+        if(is_numeric($this->get('email'))){
+            return ['phone'=>$this->get('email'),'password'=>$this->get('password')];
+        }
+        elseif (filter_var($this->get('email'), FILTER_VALIDATE_EMAIL)) {
+            return ['email' => $this->get('email'), 'password'=>$this->get('password')];
+        }
+    }
+
     public function authenticate()
     {
         $this->ensureIsNotRateLimited();
 
-        if (!Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+        if (!Auth::attempt(self::credition(), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
